@@ -1,6 +1,8 @@
 package com.hani.point;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,20 +41,32 @@ public class PointController extends HttpServlet {
 		//Forward(true), redirect(false) 선택
 		boolean check = true;
 		
-		//path(경로명) 담을 변수
+		//path(경로명(URL)) 담을 변수
 		String path = "";
 		
 		if(command.equals("/pointList")) {
-			System.out.println("List");
+			check = true;
+			path = "../WEB-INF/views/point/pointList.jsp";
 			
 		}else if(command.equals("/pointAdd")) {
-			System.out.println("Add");
+			if(method.equals("POST")) {
+				
+			}else {
+				check = true;
+				path = "../WEB-INF/views/point/pointAdd.jsp";
+			}
 			
 		}else if(command.equals("/pointMod")) {
-			System.out.println("Mod");
+			if(method.equals("POST")) {
+				
+			}else {
+				check = true;
+				path = "../WEB-INF/views/point/pointMod.jsp";
+			}
 			
 		}else if(command.equals("/pointSelect")) {
-			System.out.println("Select");
+			check = true;
+			path = "../WEB-INF/views/point/pointSelect.jsp";
 			
 		}else if(command.equals("/pointDelete")) {
 			System.out.println("Delete");
@@ -61,6 +75,13 @@ public class PointController extends HttpServlet {
 			System.out.println("ETC");
 		}
 		
+		//어디로 보낼지 결정
+		if(check) {
+			RequestDispatcher view = request.getRequestDispatcher(path);
+			view.forward(request, response);
+		}else {
+			response.sendRedirect(path);
+		}
 		
 		
 		
