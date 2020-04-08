@@ -1,6 +1,7 @@
 package com.hani.point;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,13 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/PointController")
 public class PointController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private PointService pointService;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public PointController() {
         super();
-        // TODO Auto-generated constructor stub
+        this.pointService = new PointService();
+
     }
 
 	/**
@@ -44,35 +48,59 @@ public class PointController extends HttpServlet {
 		//path(경로명(URL)) 담을 변수
 		String path = "";
 		
+		try {
+		
 		if(command.equals("/pointList")) {
-			check = true;
+			
+				ArrayList<PointDTO> ar = pointService.pointList();
+				request.setAttribute("list", ar);
+			
+			
 			path = "../WEB-INF/views/point/pointList.jsp";
 			
 		}else if(command.equals("/pointAdd")) {
 			if(method.equals("POST")) {
 				
+				
 			}else {
-				check = true;
+				
 				path = "../WEB-INF/views/point/pointAdd.jsp";
+				
 			}
 			
 		}else if(command.equals("/pointMod")) {
 			if(method.equals("POST")) {
 				
 			}else {
-				check = true;
 				path = "../WEB-INF/views/point/pointMod.jsp";
 			}
 			
 		}else if(command.equals("/pointSelect")) {
-			check = true;
+			
+			int num = Integer.parseInt(request.getParameter("num"));
+			
+			PointDTO pointDTO = pointService.pointSelect(num);
+			
+			request.setAttribute("dto", pointDTO);
 			path = "../WEB-INF/views/point/pointSelect.jsp";
 			
 		}else if(command.equals("/pointDelete")) {
-			System.out.println("Delete");
+			check = false;
+			
+			int num = Integer.parseInt(request.getParameter("num"));
+			
+			int result = pointService.pointDelete(num);
+			
+			
+			path = "./pointList";
+			
 			
 		}else {
 			System.out.println("ETC");
+		}
+		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		//어디로 보낼지 결정
