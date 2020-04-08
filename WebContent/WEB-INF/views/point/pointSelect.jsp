@@ -75,7 +75,7 @@
 			</table>
 			
 			<a href="./pointDelete?num=${dto.num}" class="btn btn-warning">Delete</a>
-	
+			
 	</div>
 	
 

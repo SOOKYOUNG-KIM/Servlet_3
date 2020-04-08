@@ -61,6 +61,19 @@ public class PointController extends HttpServlet {
 		}else if(command.equals("/pointAdd")) {
 			if(method.equals("POST")) {
 				
+				PointDTO pointDTO = new PointDTO();
+				
+				pointDTO.setName(request.getParameter("name"));
+				pointDTO.setNum(Integer.parseInt(request.getParameter("num")));
+				pointDTO.setKor(Integer.parseInt(request.getParameter("kor")));
+				pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
+				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
+				
+				int result = pointService.pointAdd(pointDTO);
+				
+				check = false;
+				path = "./pointList";
+				
 				
 			}else {
 				
@@ -90,7 +103,6 @@ public class PointController extends HttpServlet {
 			int num = Integer.parseInt(request.getParameter("num"));
 			
 			int result = pointService.pointDelete(num);
-			
 			
 			path = "./pointList";
 			
