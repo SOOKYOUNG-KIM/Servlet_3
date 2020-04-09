@@ -69,10 +69,18 @@ public class PointController extends HttpServlet {
 				pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
 				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
 				
-				int result = pointService.pointAdd(pointDTO);
+				String msg = "등록에 실패 했습니다.";
 				
-				check = false;
-				path = "./pointList";
+				int result = pointService.pointAdd(pointDTO);
+					if(result>0) {
+						msg = "등록에 성공 하였습니다";
+
+					}
+					
+				request.setAttribute("result", msg);
+				request.setAttribute("path", "./pointList");
+				
+				path = "../WEB-INF/views/common/result.jsp";
 				
 				
 			}else {
@@ -94,10 +102,19 @@ public class PointController extends HttpServlet {
 				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
 				
 				int result = pointService.pointMod(pointDTO);
+				String msg = "수정에 실패 했습니다.";
+					if(result > 0) {
+						msg = "수정에 성공 하였습니다.";
+						request.setAttribute("path", "./pointSelect?num="+pointDTO.getNum());
+					}else {
+						request.setAttribute("path", "./pointList");
+						
+					}
+					
+					request.setAttribute("result", msg);
+			
 				
-				check = false;
-				
-				path = "./pointSelect?num="+pointDTO.getNum();
+				path = "../WEB-INF/views/common/result.jsp";
 				
 				
 				
