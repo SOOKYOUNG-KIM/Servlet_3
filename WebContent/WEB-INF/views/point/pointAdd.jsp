@@ -46,14 +46,13 @@
   <p>This is some text.</p>      
   <p>This is another text.</p>      
 </div>
-	<h1>Point Add Form</h1>
 	
 	<div class="container">
-  <h2>Vertical (basic) form</h2>
+  <h2>Point Add Form</h2>
   <form action="./pointAdd" method="post">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" >
     </div>
     
     <div class="form-group">
@@ -77,7 +76,6 @@
     </div>
     
    
- 
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

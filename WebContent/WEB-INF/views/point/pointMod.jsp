@@ -12,7 +12,43 @@
 <!-- BootStrap API -->  
 </head>
 <body>
-	<h1>Point Mode Form</h1>
+	
+
+<div class="container">
+  <h2>Point Mode</h2>
+  <form class="form-horizontal" action="./pointMod" method="post">
+   <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" value="${dto.name}">
+    </div>
+    
+    <div class="form-group">
+      <label for="num">Num:</label>
+      <input type="text" class="form-control" id="num" name="num" value="${dto.num}" readonly="readonly">
+    </div>
+    
+    <div class="form-group">
+      <label for="num">Kor:</label>
+      <input type="text" class="form-control" id="kor" name="kor" value="${dto.kor}">
+    </div>
+    
+     <div class="form-group">
+      <label for="num">Eng:</label>
+      <input type="text" class="form-control" id="eng" name="eng" value="${dto.eng}">
+    </div>
+    
+    <div class="form-group">
+      <label for="num">Math:</label>
+      <input type="text" class="form-control" id="math" name="math" value="${dto.math}">
+    </div>
+
+   
+        <button type="submit" class="btn btn-default">Submit</button>
+
+ 
+  </form>
+</div>
+
 
 </body>
 </html>
