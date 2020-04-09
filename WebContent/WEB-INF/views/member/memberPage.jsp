@@ -54,11 +54,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>${dto.id}</td>
-        <td>${dto.name}</td>
-        <td>${dto.age}</td>
-        <td>${dto.phone}</td>
-        <td>${dto.email}</td>
+        <td>${member.id}</td>
+        <td>${member.name}</td>
+        <td>${member.age}</td>
+        <td>${member.phone}</td>
+        <td>${member.email}</td>
         
       </tr>
       

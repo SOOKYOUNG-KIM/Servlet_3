@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  * Servlet implementation class MemberController
@@ -107,17 +108,11 @@ public class MemberController extends HttpServlet {
 			path = "../";
 			
 		}else if(command.equals("/memberPage")) {
-			
 			MemberDTO memberDTO = new MemberDTO();
-				
-				memberDTO.setId(request.getParameter("id"));
-				memberDTO.setPw(request.getParameter("pw"));
 			
-				memberDTO = memberService.memberLogin(memberDTO);
-			
-				System.out.println(memberDTO);
+				HttpSession session = request.getSession();
+				session.setAttribute("dto", memberDTO);
 				
-				request.setAttribute("dto", memberDTO);
 				path = "../WEB-INF/views/member/memberPage.jsp";
 			
 			
