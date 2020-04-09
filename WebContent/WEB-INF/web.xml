@@ -11,6 +11,15 @@
 		<url-pattern>/point/*</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>member</servlet-name>
+		<servlet-class>com.hani.member.MemberController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>member</servlet-name>
+		<url-pattern>/member/*</url-pattern>
+	</servlet-mapping>
 
 
 

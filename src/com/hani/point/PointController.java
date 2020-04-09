@@ -123,6 +123,7 @@ public class PointController extends HttpServlet {
 				PointDTO pointDTO = new PointDTO();
 				
 				int num = Integer.parseInt(request.getParameter("num"));
+				
 				pointDTO = pointService.pointSelect(num);
 				
 				request.setAttribute("dto", pointDTO);
