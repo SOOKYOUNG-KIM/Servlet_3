@@ -17,5 +17,15 @@ public class MemberService {
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception{
 		return memberDAO.memberLogin(memberDTO);
 	}
+	
+	//3. Delete()
+	public int memberDel(String id) throws Exception{
+		return memberDAO.memberDelete(id);
+	}
+	//4. Update()
+	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+		return memberDAO.memberUpdate(memberDTO);
+	}
+	
 
 }

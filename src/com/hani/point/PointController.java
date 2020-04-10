@@ -69,12 +69,11 @@ public class PointController extends HttpServlet {
 				pointDTO.setEng(Integer.parseInt(request.getParameter("eng")));
 				pointDTO.setMath(Integer.parseInt(request.getParameter("math")));
 				
-				String msg = "등록에 실패 했습니다.";
-				
 				int result = pointService.pointAdd(pointDTO);
+				
+				String msg = "등록에 실패 했습니다.";
 					if(result>0) {
 						msg = "등록에 성공 하였습니다";
-
 					}
 					
 				request.setAttribute("result", msg);

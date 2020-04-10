@@ -60,9 +60,15 @@ public class MemberController extends HttpServlet {
 				
 				int result = memberService.memberAdd(memberDTO);
 				
-				check = false;
-				path = "../";
+				String msg = "등록에 실패 했습니다.";
+					if(result>0) {
+						msg = "등록에 성공 하였습니다";
+					}
+					
+				request.setAttribute("result", msg);
+				request.setAttribute("path", "../");
 				
+				path = "../WEB-INF/views/common/result.jsp";
 				
 			}else {
 				
@@ -108,19 +114,63 @@ public class MemberController extends HttpServlet {
 			path = "../";
 			
 		}else if(command.equals("/memberPage")) {
-			MemberDTO memberDTO = new MemberDTO();
-			
-				HttpSession session = request.getSession();
-				session.setAttribute("dto", memberDTO);
-				
+		
 				path = "../WEB-INF/views/member/memberPage.jsp";
 			
 			
-			
-			
 		}else if(command.equals("/memberUpdate")) {
+			if(method.equals("POST")) {
+				HttpSession session = request.getSession();
+				
+				MemberDTO memberDTO = new MemberDTO();
+				
+				memberDTO.setId(request.getParameter("id"));
+				memberDTO.setPw(request.getParameter("pw"));
+				memberDTO.setName(request.getParameter("name"));
+				memberDTO.setAge(Integer.parseInt(request.getParameter("age")));
+				memberDTO.setPhone(request.getParameter("phone"));
+				memberDTO.setEmail(request.getParameter("email"));
+				
+				int result = memberService.memberUpdate(memberDTO);
+				
+				String msg = "수정에 실패 했습니다.";
+				if(result > 0) {
+					//update성공하면 session에 있는 데이터로 update해줘야함.
+					session.setAttribute("member", memberDTO);	//=전에 있던 member의 memberDTO를 수정하겠다
+					
+					msg = "수정에 성공 하였습니다.";
+					
+					request.setAttribute("path", "./memberPage");
+				}else {
+					
+					request.setAttribute("path", "./memberUpdate");
+					
+				}	
+				request.setAttribute("result", msg);
+				
+				path = "../WEB-INF/views/common/result.jsp";
+				
+			}else {
+				path = "../WEB-INF/views/member/memberUpdate.jsp";
+			}
 			
-		}else {
+		}else if(command.equals("/memberDelete")) {
+				
+				MemberDTO memberDTO = new MemberDTO();
+				HttpSession session = request.getSession();
+				memberDTO = (MemberDTO)session.getAttribute("member");
+				//memberDTO.setId(request.getSession());
+				String id = memberDTO.getId();
+				int result = memberService.memberDel(id);
+				
+				if(result>0) {
+					session.invalidate();
+				}
+				
+				check = false;
+				path="../";
+		}
+		else{
 			System.out.println("ETC");
 		}
 		}catch (Exception e) {
