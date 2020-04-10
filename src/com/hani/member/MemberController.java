@@ -60,15 +60,8 @@ public class MemberController extends HttpServlet {
 				
 				int result = memberService.memberAdd(memberDTO);
 				
-				String msg = "등록에 실패 했습니다.";
-					if(result>0) {
-						msg = "등록에 성공 하였습니다";
-					}
-					
-				request.setAttribute("result", msg);
-				request.setAttribute("path", "../");
-				
-				path = "../WEB-INF/views/common/result.jsp";
+				check = false;
+				path = "../";
 				
 			}else {
 				
