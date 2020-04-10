@@ -11,6 +11,7 @@
 		<url-pattern>/point/*</url-pattern>
 	</servlet-mapping>
 
+
 	<servlet>
 		<servlet-name>member</servlet-name>
 		<servlet-class>com.hani.member.MemberController</servlet-class>
@@ -22,6 +23,17 @@
 	</servlet-mapping>
 
 
+	<servlet>
+		<servlet-name>notice</servlet-name>
+		<servlet-class>com.hani.notice.NoticeController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>notice</servlet-name>
+		<url-pattern>/notice/*</url-pattern>
+	</servlet-mapping>
+	
+	
 
 	<servlet>
 		<servlet-name>home</servlet-name>    
