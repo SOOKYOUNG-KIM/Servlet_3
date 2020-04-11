@@ -12,5 +12,31 @@
 <c:import url="../template/header.jsp"></c:import>
 
 
+<div class="container">
+<h2>NOTICE</h2>
+  <p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p>  
+  <form action="./noticeUpdate" method="post">          
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>TITLE</th>
+        <th>NAME</th>
+        <th>DATE</th>
+        <th>HIT</th>
+      </tr>
+    </thead>
+    <tbody>
+			<tr>
+				<td class="con">${dto.contenst}</td>
+				<td class="name">${dto.writer}</td>
+				<td class="date">${dto.rdate}</td>
+				<td class="hit">
+				<span class="num">${dto.views}</span> 
+				</td>
+			</tr> 
+    </tbody>
+  </table>
+</form>
+</div>
 </body>
 </html>

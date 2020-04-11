@@ -50,5 +50,86 @@ public class NoticeDAO {
 	
 		return ar;
 	}
+	
+	//2. SelectOne
+		public NoticeDTO noticeSelect(long nnum) throws Exception{
+			NoticeDTO noticeDTO = null;
+			
+			Connection con = DBConnect.getConnect();
+			
+			String sql = "SELECT * FROM NOTICE WHERE NNUM = ?";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			 st.setLong(1, nnum);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()) {
+				noticeDTO = new NoticeDTO();
+				
+				noticeDTO.setNnum(rs.getLong("nnum"));
+				noticeDTO.setTitle(rs.getString("title"));
+				noticeDTO.setWriter(rs.getString("writer"));
+				noticeDTO.setRdate(rs.getDate("rdate"));
+				noticeDTO.setViews(rs.getLong("views"));
+				noticeDTO.setContenst(rs.getString("contenst"));
+				
+
+			}else {
+				
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+			
+			return noticeDTO;
+			
+		}
+		
+		//3. Update
+		
+		public int noticeUpdate(NoticeDTO noticeDTO) throws Exception{
+			Connection con = DBConnect.getConnect();
+			
+			String sql = "UPDATE NOTICE SET TITLE =? ,CONTENST=? WHERE NNUM=?";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setString(1, noticeDTO.getTitle());
+			st.setString(2, noticeDTO.getContenst());
+			st.setLong(3, noticeDTO.getNnum());
+			
+			int result = st.executeUpdate();
+			
+			st.close();
+			con.close();
+			
+			
+			return result;
+		
+		}
+		
+		//4. Insert
+		public int noticeAdd(NoticeDTO noticeDTO) throws Exception {
+			Connection con = DBConnect.getConnect();
+			
+			String sql = "INSERT INTO NOTICE VALUES(NOTICE_SEQ.nextval, ?, ?,'admin',SYSDATE,0)";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setString(1, noticeDTO.getTitle());
+			st.setString(2, noticeDTO.getContenst());
+
+			
+			int result = st.executeUpdate();
+			
+			st.close();
+			con.close();
+			
+			
+			return result;
+		}
 
 }

@@ -34,6 +34,7 @@ public class MemberDAO {
 	
 	//2. Login DB check(select)
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception{
+		
 		Connection con = DBConnect.getConnect();
 		
 		String sql = "SELECT * FROM MEMBER WHERE ID=? AND PW=?";
@@ -42,9 +43,10 @@ public class MemberDAO {
 		
 		st.setString(1, memberDTO.getId());
 		st.setString(2, memberDTO.getPw());
-		
+
 		ResultSet rs = st.executeQuery();
 		
+
 		if(rs.next()) {
 			memberDTO.setName(rs.getString("name"));
 			memberDTO.setAge(rs.getInt("age"));

@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.hani.point.PointDTO;
 
 /**
  * Servlet implementation class NoticeController
@@ -59,10 +62,74 @@ public class NoticeController extends HttpServlet {
 				path = "../WEB-INF/views/notice/noticeList.jsp";
 				
 			}else if(command.equals("/noticeAdd")) {
-				
+				if(method.equals("POST")) {
+					
+					NoticeDTO noticeDTO = new NoticeDTO();
+					
+					noticeDTO.setTitle(request.getParameter("title"));
+					noticeDTO.setContenst(request.getParameter("contenst"));
+					noticeDTO.setWriter(request.getParameter("writer"));
+
+					HttpSession session = request.getSession();
+					session.setAttribute("dto", noticeDTO);
+					
+					int result = noticeService.noticeAdd(noticeDTO);
+					System.out.println(result);
+					String msg = "등록에 실패 했습니다.";
+						if(result>0) {
+							msg = "등록에 성공 하였습니다";
+						}
+						
+					request.setAttribute("result", msg);
+					request.setAttribute("path", "./noticeList");
+					
+					path = "../WEB-INF/views/common/result.jsp";
+					
+					
+				}else {
+					
+					path = "../WEB-INF/views/notice/noticeAdd.jsp";
+				}
 			}else if(command.equals("/noticeSelect")) {
 				
+				long nnum = Integer.parseInt(request.getParameter("nnum"));
+				
+				NoticeDTO noticeDTO = noticeService.noticeSelect(nnum);
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("dto", noticeDTO);
+				
+				path = "../WEB-INF/views/notice/noticeSelect.jsp";
+				
 			}else if(command.equals("/noticeUpdate")) {
+				
+				if(method.equals("POST")) {
+					
+					
+					NoticeDTO noticeDTO = new NoticeDTO();
+					
+					noticeDTO.setContenst(request.getParameter("contenst"));
+					noticeDTO.setTitle(request.getParameter("title"));
+					
+					int result = noticeService.noticeUpdate(noticeDTO);
+					
+					String msg = "수정에 실패 했습니다.";
+						if(result > 0) {
+							msg = "수정에 성공 하였습니다.";
+							request.setAttribute("path", "./noticeSelect?num="+noticeDTO.getNnum());
+						}else {
+							request.setAttribute("path", "./noticetList");
+							
+						}
+						
+						request.setAttribute("result", msg);
+				
+					
+					path = "../WEB-INF/views/common/result.jsp";
+					
+				}else {
+					path = "../WEB-INF/views/notice/noticeUpdate.jsp";
+				}
 				
 			}else {
 				System.out.println("ETC");
