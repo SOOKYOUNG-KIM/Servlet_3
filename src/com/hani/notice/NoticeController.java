@@ -62,6 +62,7 @@ public class NoticeController extends HttpServlet {
 				
 			}else if(command.equals("/noticeSelect")) {
 				
+				
 			}else if(command.equals("/noticeUpdate")) {
 				
 			}else {
