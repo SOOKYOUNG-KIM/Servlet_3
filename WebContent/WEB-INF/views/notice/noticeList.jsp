@@ -30,7 +30,7 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.nnum}</td>
-						<td><a href="./noticeSelect?num=${dto.num}">${dto.title}</a></td>
+						<td><a href="./noticeSelect?nnum=${dto.nnum}">${dto.title}</a></td>
 						<td>${dto.writer}</td>
 						<td>${dto.rdate}</td>
 						<td>${dto.views}</td>
@@ -40,8 +40,17 @@
 				
 				
 			</table>
-			
+			 <ul class="pagination">
+			    <li class="active"><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			  </ul>
+						
+	 <c:if test="${member.id eq dto.writer}">
 			<a href="./noticeAdd" class="btn btn-primary">Notice Add</a>
+ 	  </c:if>
 			
 		
 		</div>
