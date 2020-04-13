@@ -26,18 +26,15 @@
 		<filter-class>com.hani.filter.AdminFilter</filter-class>
 	</filter>
 	
-	<filter-mapping>
+ 	<filter-mapping>
 		<filter-name>admin</filter-name>
 		<url-pattern>/notice/noticeAdd</url-pattern>	
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>admin</filter-name>
-		<url-pattern>/notice/noticeList</url-pattern>	
-	</filter-mapping>
-	<filter-mapping>
+	</filter-mapping> 
+	
+<!-- 	<filter-mapping>
 		<filter-name>admin</filter-name>
 		<url-pattern>/point/pointAdd</url-pattern>	
-	</filter-mapping>
+	</filter-mapping> -->
 	
 
 

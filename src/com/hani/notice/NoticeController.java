@@ -35,8 +35,11 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			getServletConfig().getInitParameter("enc");		//현재 Servlet의 객체 저장
-			getServletContext().getInitParameter("enc");		// 전체 정보 저장 객체(application)
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+		
+			//	getServletConfig().getInitParameter("");		//현재 Servlet의 객체 저장
+			//	getServletContext().getInitParameter("");		// 전체 정보 저장 객체(application)
 				
 			//pathInfo
 			String command = request.getPathInfo();

@@ -59,15 +59,16 @@ public class AdminFilter implements Filter {
 				System.out.println("admin");
 				chain.doFilter(request, response);
 				
-			}else {
+			}else{
 				// 일반 member
 				System.out.println("member");
 //				request.setAttribute("result", "권한이 필요합니다");
 //				request.setAttribute("path", "../");
 //				RequestDispatcher view = request.getRequestDispatcher("../common/result.jsp");
 //				view.forward(request, response);
-				((HttpServletResponse)response).sendRedirect("../member/memberLogin");
+				((HttpServletResponse)response).sendRedirect("../notice/noticeList");
 			}
+		
 			
 		}else {
 			// 로그인이 안된 상태

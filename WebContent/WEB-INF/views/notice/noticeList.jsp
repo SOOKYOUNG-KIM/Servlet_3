@@ -37,9 +37,9 @@
 						
 					</tr>
 				</c:forEach>
-				
-				
 			</table>
+				
+				
 			 <ul class="pagination">
 			    <li class="active"><a href="#">1</a></li>
 			    <li><a href="#">2</a></li>
@@ -49,9 +49,10 @@
 			  </ul>
 		
 		<div>
-			<a href="./noticeAdd"class="btn btn-primary" style="display: none;">Notice Add</a>
-	 <c:if test="${member.id eq dto.writer}">
+		<c:if test="${not empty sessionScope.member}">
+	 <c:if test="${member.id eq 'admin'}">
 	 		<a href="./noticeAdd"class="btn btn-primary">Notice Add</a>
+ 	  </c:if>
  	  </c:if>
 		</div>
 		
