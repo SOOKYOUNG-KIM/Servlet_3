@@ -29,5 +29,10 @@ public class NoticeService {
 	public int noticeAdd(NoticeDTO noticeDTO) throws Exception{
 		return noticeDAO.noticeAdd(noticeDTO);
 	}
+	
+	//5. Delete
+	public int noticeDelete(int num) throws Exception{
+		return noticeDAO.noticeDelete(num);
+	}
 
 }

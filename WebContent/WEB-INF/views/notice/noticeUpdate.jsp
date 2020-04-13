@@ -20,6 +20,7 @@
     <thead>
       <tr>
         <th>TITLE</th>
+        <th>CONTENTS</th>
         <th>NAME</th>
         <th>DATE</th>
         <th>HIT</th>
@@ -27,6 +28,7 @@
     </thead>
     <tbody>
 			<tr>
+				<td class="con">${dto.title}</td>
 				<td class="con">${dto.contenst}</td>
 				<td class="name">${dto.writer}</td>
 				<td class="date">${dto.rdate}</td>
@@ -34,8 +36,19 @@
 				<span class="num">${dto.views}</span> 
 				</td>
 			</tr> 
+    
     </tbody>
   </table>
+
+  	<div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" value="${dto.title}">
+    </div>
+  
+    <div class="form-group">
+      <label for="comment">Contents:</label>
+      <input class="form-control" rows="5" id="contenst" placeholder="Enter Contents" name="contenst" value="${dto.contenst}"></input>
+    </div>
 </form>
 </div>
 </body>

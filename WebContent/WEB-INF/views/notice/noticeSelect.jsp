@@ -19,6 +19,7 @@
     <thead>
       <tr>
         <th>TITLE</th>
+        <th>CONTENTS</th>
         <th>NAME</th>
         <th>DATE</th>
         <th>HIT</th>
@@ -26,6 +27,7 @@
     </thead>
     <tbody>
 			<tr>
+				<td class="con">${dto.title}</td>
 				<td class="con">${dto.contenst}</td>
 				<td class="name">${dto.writer}</td>
 				<td class="date">${dto.rdate}</td>
@@ -39,8 +41,10 @@
 			<a href="./noticeList?num=${dto.nnum}" class="btn btn-warning" id="L1">LIST</a>
 			
 	 <c:if test="${dto.writer eq member.id}">
-		<a href="./noticeUpdate?num=${dto.nnum}" class="btn btn-primary" id="up">Update</a>
+		<a href="./noticeUpdate?num=${dto.nnum}" class="btn btn-primary" id="up">UPDATE</a>
  	  </c:if>
+ 	  
+ 	  		<a href="./noticeDelete?num=${dto.nnum}" class="btn btn-danger">DELETE</a>
 			
 		</div>
 

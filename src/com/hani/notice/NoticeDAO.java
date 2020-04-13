@@ -17,7 +17,7 @@ public class NoticeDAO {
 		//1. DB 연결
 		Connection con = DBConnect.getConnect();
 		//2. SQL문 작성
-		String sql = "SELECT * FROM NOTICE ORDER BY RDATE ASC";
+		String sql = "SELECT * FROM NOTICE ORDER BY RDATE DESC";
 		//3. SQL 미리 전송
 		PreparedStatement st = con.prepareStatement(sql);
 		//4. ? 값 넣어주기
@@ -130,6 +130,29 @@ public class NoticeDAO {
 			
 			
 			return result;
+		}
+		
+		//5. Delete
+		public int noticeDelete(int num) throws Exception{
+
+			
+			Connection con = DBConnect.getConnect();
+			
+			String sql = "DELETE FROM NOTICE WHERE NNUM = ?";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setInt(1, num);
+			
+			int result = st.executeUpdate();
+			
+			
+			st.close();
+			con.close();
+			
+			return result;
+			
+			
 		}
 
 }

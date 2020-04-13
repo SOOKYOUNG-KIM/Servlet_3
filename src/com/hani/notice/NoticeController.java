@@ -35,9 +35,8 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//한글 처리(Encoding) - 꺼내기전에 코딩(=맨위에 코딩)
-			request.setCharacterEncoding("UTF-8");
-			response.setCharacterEncoding("UTF-8");
+			getServletConfig().getInitParameter("enc");		//현재 Servlet의 객체 저장
+			getServletContext().getInitParameter("enc");		// 전체 정보 저장 객체(application)
 				
 			//pathInfo
 			String command = request.getPathInfo();
@@ -130,6 +129,15 @@ public class NoticeController extends HttpServlet {
 				}else {
 					path = "../WEB-INF/views/notice/noticeUpdate.jsp";
 				}
+				
+			}else if(command.equals("/noticeDelete")){
+				check = false;
+				
+				int num = Integer.parseInt(request.getParameter("num"));
+				
+				int result = noticeService.noticeDelete(num);
+				
+				path = "./noticeList";
 				
 			}else {
 				System.out.println("ETC");

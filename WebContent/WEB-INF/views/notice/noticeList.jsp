@@ -47,11 +47,13 @@
 			    <li><a href="#">4</a></li>
 			    <li><a href="#">5</a></li>
 			  </ul>
-						
+		
+		<div>
+			<a href="./noticeAdd"class="btn btn-primary" style="display: none;">Notice Add</a>
 	 <c:if test="${member.id eq dto.writer}">
-			<a href="./noticeAdd" class="btn btn-primary">Notice Add</a>
+	 		<a href="./noticeAdd"class="btn btn-primary">Notice Add</a>
  	  </c:if>
-			
+		</div>
 		
 		</div>
 	</div>
