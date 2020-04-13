@@ -14,13 +14,13 @@ public class DBConnect {
 		//2. 유저의 권한이 부여되지 않은 경우
 		
 		String user = "user02";
-		String password = "oracle";
+		String password = "user02";
 		
 		//not Connect
 		//1. IP, Port, xe 정보가 틀린경우
 		//2. 물리적으로 연결이 안되거나, 서버가 종료된 경우
 		//3. Listener문제, DB 재시동
-		String url = "jdbc:oracle:thin:@192.168.56.102:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.56.101:1521:xe";
 		
 		//class not found
 		//1. driver명이 틀린 경우
